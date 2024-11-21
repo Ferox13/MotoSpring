@@ -25,7 +25,6 @@ public class Carrera {
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private Posicion posicion;
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "piloto_id", referencedColumnName = "id")
     private Piloto piloto;

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.fer.motos.model.entities.Carrera;
+import edu.fer.motos.model.enums.Posicion;
 import edu.fer.motos.model.services.implementation.CarreraServiceImpl;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
-@RequestMapping("/carrera")
+@RequestMapping("/carreras")
 public class CarreraController {
     @Autowired
     CarreraServiceImpl carreraService;
@@ -31,7 +32,13 @@ public class CarreraController {
         Carrera carrera = carreraService.buscarPorId(id);
         return carrera != null ? ResponseEntity.ok().body(carrera) : ResponseEntity.badRequest().build();
     }
-    
-   
+
+    @GetMapping("/posicion/{posuno}/{posdos}")
+    public ResponseEntity<List<Carrera>> buscarPilotosEntrePosiciones(@PathVariable("posuno") Posicion posuno,
+            @PathVariable("posdos") Posicion posdos) {
+        List<Carrera> listaCarreras = carreraService.buscarPilotosEntrePosiciones(posuno, posdos);
+        return !listaCarreras.isEmpty() ? ResponseEntity.ok().body(listaCarreras) : ResponseEntity.noContent().build();
+
+    }
 
 }

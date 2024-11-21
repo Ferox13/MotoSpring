@@ -3,6 +3,8 @@ package edu.fer.motos.model.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import edu.fer.motos.model.enums.Conduccion;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -28,6 +30,7 @@ public class Piloto {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, columnDefinition = "Enum('PASIVA','AGRESIVA','TEMERARIA')")
     private Conduccion conduccion;
+    @JsonIgnore
     @OneToMany(mappedBy = "piloto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     List<Carrera> carreras = new ArrayList<>();
 
