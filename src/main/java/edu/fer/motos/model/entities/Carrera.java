@@ -1,7 +1,5 @@
 package edu.fer.motos.model.entities;
 
-import org.hibernate.annotations.Collate;
-
 import edu.fer.motos.model.enums.Posicion;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +18,7 @@ public class Carrera {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(length = 25,nullable = false)
+    @Column(length = 25, nullable = false)
     private String temporada;
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
@@ -31,7 +29,7 @@ public class Carrera {
     @ManyToOne
     @JoinColumn(name = "circuito_id", referencedColumnName = "id")
     private Circuito circuito;
-    
+
     public Carrera() {
     }
 
@@ -90,5 +88,4 @@ public class Carrera {
         this.circuito = circuito;
     }
 
-    
 }
