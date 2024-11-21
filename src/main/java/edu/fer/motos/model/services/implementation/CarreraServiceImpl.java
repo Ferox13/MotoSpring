@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.fer.motos.model.entities.Carrera;
+import edu.fer.motos.model.enums.Posicion;
 import edu.fer.motos.model.repositories.ICarreraRepository;
 import edu.fer.motos.model.services.interfaces.ICarreraService;
 
@@ -28,6 +29,12 @@ public class CarreraServiceImpl implements ICarreraService  {
        }else{
         return null;
        }
+    }
+
+    @Override
+    public List<Carrera> buscarPilotosEntrePosiciones(Posicion posicionUno, Posicion posicionDos) {
+        List<Carrera> lista = carreraRepository.findByPosicionBetween(posicionUno, posicionDos);
+        return lista;
     }
 
 }

@@ -1,6 +1,7 @@
 package edu.fer.motos.model.enums;
 
 public enum Posicion {
+    ZERO,
     FIRST,
     SECOND,
     THIRD,
