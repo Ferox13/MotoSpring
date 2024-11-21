@@ -31,5 +31,64 @@ public class Carrera {
     @ManyToOne
     @JoinColumn(name = "circuito_id", referencedColumnName = "id")
     private Circuito circuito;
+    
+    public Carrera() {
+    }
 
+    public Carrera(Integer id, String temporada, Posicion posicion, Piloto piloto, Circuito circuito) {
+        this.id = id;
+        this.temporada = temporada;
+        this.posicion = posicion;
+        this.piloto = piloto;
+        this.circuito = circuito;
+    }
+
+    public Carrera(String temporada, Posicion posicion, Piloto piloto, Circuito circuito) {
+        this.temporada = temporada;
+        this.posicion = posicion;
+        this.piloto = piloto;
+        this.circuito = circuito;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTemporada() {
+        return temporada;
+    }
+
+    public void setTemporada(String temporada) {
+        this.temporada = temporada;
+    }
+
+    public Posicion getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(Posicion posicion) {
+        this.posicion = posicion;
+    }
+
+    public Piloto getPiloto() {
+        return piloto;
+    }
+
+    public void setPiloto(Piloto piloto) {
+        this.piloto = piloto;
+    }
+
+    public Circuito getCircuito() {
+        return circuito;
+    }
+
+    public void setCircuito(Circuito circuito) {
+        this.circuito = circuito;
+    }
+
+    
 }

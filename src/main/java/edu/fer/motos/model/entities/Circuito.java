@@ -26,5 +26,42 @@ public class Circuito {
     private String localidad;
     @OneToMany(mappedBy = "circuito",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     List<Carrera> carreras= new ArrayList<>();
+    public Circuito() {
+    }
+    public Circuito(Integer id, String nombre, String localidad, List<Carrera> carreras) {
+        this.id = id;
+        this.nombre = nombre;
+        this.localidad = localidad;
+        this.carreras = carreras;
+    }
+    public Circuito(String nombre, String localidad, List<Carrera> carreras) {
+        this.nombre = nombre;
+        this.localidad = localidad;
+        this.carreras = carreras;
+    }
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getLocalidad() {
+        return localidad;
+    }
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+    public List<Carrera> getCarreras() {
+        return carreras;
+    }
+    public void setCarreras(List<Carrera> carreras) {
+        this.carreras = carreras;
+    }
 
 }

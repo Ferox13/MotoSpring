@@ -33,4 +33,53 @@ public class Piloto {
     private Conduccion conduccion;
     @OneToMany(mappedBy = "piloto",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     List<Carrera> carreras= new ArrayList<>();
+    
+    public Piloto() {
+    }
+    
+    public Piloto(Integer id, String nombre, Conduccion conduccion, List<Carrera> carreras) {
+        this.id = id;
+        this.nombre = nombre;
+        this.conduccion = conduccion;
+        this.carreras = carreras;
+    }
+
+    public Piloto(String nombre, Conduccion conduccion, List<Carrera> carreras) {
+        this.nombre = nombre;
+        this.conduccion = conduccion;
+        this.carreras = carreras;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Conduccion getConduccion() {
+        return conduccion;
+    }
+
+    public void setConduccion(Conduccion conduccion) {
+        this.conduccion = conduccion;
+    }
+
+    public List<Carrera> getCarreras() {
+        return carreras;
+    }
+
+    public void setCarreras(List<Carrera> carreras) {
+        this.carreras = carreras;
+    }
+    
 }
