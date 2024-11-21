@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,8 +32,8 @@ public class PilotoController {
         }
     }
 
-    @GetMapping("/piloto/{id}")
-    public ResponseEntity<Piloto> getMethodName(@RequestParam Integer id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Piloto> buscarPilotoPorId(@PathVariable Integer id) {
         try {
             Piloto piloto = pilotoService.buscarPiloto(id);
             return piloto != null ? ResponseEntity.ok().body(piloto) : ResponseEntity.badRequest().build();

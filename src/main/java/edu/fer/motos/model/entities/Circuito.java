@@ -3,6 +3,8 @@ package edu.fer.motos.model.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,6 +25,7 @@ public class Circuito {
     private String nombre;
     @Column(length = 25, nullable = false)
     private String localidad;
+    @JsonIgnore
     @OneToMany(mappedBy = "circuito", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     List<Carrera> carreras = new ArrayList<>();
 

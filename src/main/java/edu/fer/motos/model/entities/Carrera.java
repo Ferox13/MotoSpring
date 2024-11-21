@@ -1,5 +1,7 @@
 package edu.fer.motos.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import edu.fer.motos.model.enums.Posicion;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,6 +25,7 @@ public class Carrera {
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private Posicion posicion;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "piloto_id", referencedColumnName = "id")
     private Piloto piloto;
