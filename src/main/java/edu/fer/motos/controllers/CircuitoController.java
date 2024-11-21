@@ -38,7 +38,7 @@ public class CircuitoController {
     }
 
     @GetMapping("/circuito/{id}")
-    public ResponseEntity<Circuito> buscarPorId(@PathVariable Integer id) {
+    public ResponseEntity<Circuito> buscarCircuitoPorId(@PathVariable Integer id) {
         try {
             Circuito circuito = circuitoService.buscarPorId(id);
             return circuito != null ? ResponseEntity.status(HttpStatus.OK).body(circuito)

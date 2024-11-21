@@ -1,10 +1,33 @@
 package edu.fer.motos.model.services.implementation;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.fer.motos.model.entities.Carrera;
+import edu.fer.motos.model.repositories.ICarreraRepository;
 import edu.fer.motos.model.services.interfaces.ICarreraService;
 
 @Service
 public class CarreraServiceImpl implements ICarreraService  {
+    @Autowired
+    ICarreraRepository carreraRepository;
+
+    @Override
+    public List<Carrera> buscarTodo() {
+        return carreraRepository.findAll();
+    }
+
+    @Override
+    public Carrera buscarPorId(Integer id) {
+       Optional<Carrera> optCarrera=carreraRepository.findById(id);
+       if (optCarrera.isPresent()) {
+        return optCarrera.get();        
+       }else{
+        return null;
+       }
+    }
 
 }
