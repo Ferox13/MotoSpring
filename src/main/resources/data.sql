@@ -12,9 +12,9 @@ INSERT INTO pilotos (nombre, conduccion) VALUES
 ('Marc Márquez', 'AGRESIVA'),
 ('Fabio Quartararo', 'PASIVA'),
 ('Francesco Bagnaia', 'TEMERARIA'),
-('Joan Mir', 'CONTROLADA'),
-('Aleix Espargaró', 'TÉCNICA'),
-('Enea Bastianini', 'COMBATIVA');
+('Joan Mir', 'AGRESIVA'),
+('Aleix Espargaró', 'TEMERARIA'),
+('Enea Bastianini', 'TEMERARIA');
 
 -- Insertar datos en la tabla carreras (2022 y 2023)
 INSERT INTO carreras (temporada, posicion, piloto_id, circuito_id) VALUES
