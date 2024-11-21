@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 @Table(name = "carreras")
 public class Carrera {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(length = 25, nullable = false)
     private String temporada;

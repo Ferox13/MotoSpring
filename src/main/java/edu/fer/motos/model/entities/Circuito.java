@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 @Table(name = "circuitos")
 public class Circuito {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(length = 125, nullable = false)
     private String nombre;
