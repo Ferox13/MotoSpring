@@ -34,7 +34,9 @@ public class CarreraServiceImpl implements ICarreraService  {
     @Override
     public List<Carrera> buscarPilotosEntrePosiciones(Posicion posicionUno, Posicion posicionDos) {
         List<Carrera> lista = carreraRepository.findByPosicionBetween(posicionUno, posicionDos);
+        System.out.println(lista);
         return lista;
     }
+    
 
 }

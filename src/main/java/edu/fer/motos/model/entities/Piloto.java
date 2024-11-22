@@ -30,7 +30,6 @@ public class Piloto {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, columnDefinition = "Enum('PASIVA','AGRESIVA','TEMERARIA')")
     private Conduccion conduccion;
-    @JsonIgnore
     @OneToMany(mappedBy = "piloto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     List<Carrera> carreras = new ArrayList<>();
 
@@ -48,6 +47,13 @@ public class Piloto {
         this.nombre = nombre;
         this.conduccion = conduccion;
         this.carreras = carreras;
+    }
+    
+
+    public Piloto(Integer id, String nombre, Conduccion conduccion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.conduccion = conduccion;
     }
 
     public Integer getId() {

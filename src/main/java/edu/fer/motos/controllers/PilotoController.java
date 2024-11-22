@@ -3,7 +3,9 @@ package edu.fer.motos.controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.fer.motos.model.entities.Carrera;
 import edu.fer.motos.model.entities.Piloto;
+import edu.fer.motos.model.enums.Posicion;
 import edu.fer.motos.model.services.implementation.PilotoServiceImpl;
 
 import java.util.List;
@@ -43,7 +45,7 @@ public class PilotoController {
     }
 
     @PostMapping("/piloto")
-    public ResponseEntity<Piloto> crerPiloto(@RequestBody Piloto piloto) {
+    public ResponseEntity<Piloto> crearPiloto(@RequestBody Piloto piloto) {
         try {
 
             Piloto pilotoInsert = pilotoService.crearPiloto(piloto);
@@ -54,5 +56,32 @@ public class PilotoController {
         }
 
     }
+
+    @GetMapping("/posicion/{posuno}/{posdos}")
+    public ResponseEntity<List<Piloto>> buscarPilotosEntrePosiciones(@PathVariable("posuno") Posicion posuno,
+            @PathVariable("posdos") Posicion posdos) {
+        List<Piloto> pilotos = pilotoService.pilotosPodium(posuno, posdos);
+        return !pilotos.isEmpty() ? ResponseEntity.ok().body(pilotos) : ResponseEntity.noContent().build();
+
+    }
+
+    @GetMapping("/posicion/carrera/{posuno}/{posdos}")
+    public ResponseEntity<List<Piloto>> buscarPilotosCarreraEntrePosiciones(@PathVariable("posuno") Posicion posuno,
+            @PathVariable("posdos") Posicion posdos) {
+        List<Piloto> pilotos = pilotoService.pilotosPodiumCarrera(posuno, posdos);
+        return !pilotos.isEmpty() ? ResponseEntity.ok().body(pilotos) : ResponseEntity.noContent().build();
+
+    }
+
+    @GetMapping("/victorias")
+    public ResponseEntity<Piloto> buscarPilotoMasVicotrias() {
+        try {
+            Piloto piloto = pilotoService.buscarPilotoMaxVictorias();
+            return piloto != null ? ResponseEntity.ok().body(piloto) : ResponseEntity.badRequest().build();
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+    
 
 }
