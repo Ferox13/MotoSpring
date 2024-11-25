@@ -9,10 +9,10 @@ public class CircuitoDTO {
     private Integer id;
     private String nombre;
     private String localidad;
-    private List<Carrera> carreras;
+    private List<CarreraDTO> carreras;
     public CircuitoDTO() {
     }
-    public CircuitoDTO(Integer id, String nombre, String localidad, List<Carrera> carreras) {
+    public CircuitoDTO(Integer id, String nombre, String localidad, List<CarreraDTO> carreras) {
         this.id = id;
         this.nombre = nombre;
         this.localidad = localidad;
@@ -36,12 +36,11 @@ public class CircuitoDTO {
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
     }
-    public List<Carrera> getCarreras() {
+    public List<CarreraDTO> getCarreras() {
         return carreras;
     }
-    public void setCarreras(List<Carrera> carreras) {
+    public void setCarreras(List<CarreraDTO> carreras) {
         this.carreras = carreras;
     }
-   
-
+    
 }
