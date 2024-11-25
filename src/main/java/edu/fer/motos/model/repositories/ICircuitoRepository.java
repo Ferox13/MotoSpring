@@ -8,6 +8,7 @@ import edu.fer.motos.model.entities.Circuito;
 
 public interface ICircuitoRepository extends JpaRepository<Circuito,Integer> {
         Optional<Circuito> findByNombre(String nombre);
+        
 
 
 }

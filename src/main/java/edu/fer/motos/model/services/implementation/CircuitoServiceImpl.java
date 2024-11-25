@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import edu.fer.motos.model.dto.CircuitoDTO;
 import edu.fer.motos.model.entities.Circuito;
 import edu.fer.motos.model.mappers.CircuitoMapper;
+import edu.fer.motos.model.repositories.ICarreraRepository;
 import edu.fer.motos.model.repositories.ICircuitoRepository;
 import edu.fer.motos.model.services.interfaces.ICircuitoService;
 
@@ -16,6 +17,8 @@ import edu.fer.motos.model.services.interfaces.ICircuitoService;
 public class CircuitoServiceImpl implements ICircuitoService {
     @Autowired
     private ICircuitoRepository circuitoRepository;
+    @Autowired
+    private ICarreraRepository carreraRepository;
 
     @Override
     public List<Circuito> buscarTodos() {
@@ -25,13 +28,27 @@ public class CircuitoServiceImpl implements ICircuitoService {
 
     @Override
     public Circuito buscarPorId(Integer id) {
-        Optional<Circuito> optCircuito=circuitoRepository.findById(id);
+        Optional<Circuito> optCircuito = circuitoRepository.findById(id);
         return optCircuito.isPresent() ? optCircuito.get() : null;
     }
 
     @Override
     public CircuitoDTO buscarPorNombre2(String nombre) {
         Optional<Circuito> optCircuito = circuitoRepository.findByNombre(nombre);
+        if (optCircuito.isPresent()) {
+            Circuito circuito = optCircuito.get();
+            CircuitoDTO dto = CircuitoMapper.INSTANCE.toDTO(circuito);
+            return dto;
+        } else {
+            return null;
+        }
+
+    }
+
+    @Override
+    public Circuito buscarPorNombre(String nombre) {
+        Optional<Circuito> optCircuito = circuitoRepository.findByNombre(nombre);
+
         return optCircuito.isPresent() ? optCircuito.get() : null;
 
     }

@@ -11,5 +11,6 @@ public interface PilotoMapper {
     PilotoMapper INSTANCE = Mappers.getMapper(PilotoMapper.class);
 
     PilotoDTO toDTO(Piloto piloto);
+
     Piloto toEntity(PilotoDTO pilotoDTO);
 }
