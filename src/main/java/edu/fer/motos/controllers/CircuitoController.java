@@ -11,13 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.fer.motos.model.entities.Circuito;
-import edu.fer.motos.model.repositories.ICircuitoRepository;
 import edu.fer.motos.model.services.implementation.CircuitoServiceImpl;
-import edu.fer.motos.model.services.interfaces.ICircuitoService;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 @RestController
 @RequestMapping("/circuitos")
@@ -49,6 +43,11 @@ public class CircuitoController {
         }
     }
 
+    @GetMapping("/nombre/{nombre}")
+    public ResponseEntity<Circuito> buscarCircuitoPorNombre(@PathVariable("nombre") String nombre) {
+        Circuito circuito = circuitoService.buscarPorNombre(nombre);
+        return circuito != null ? ResponseEntity.ok().body(circuito) : ResponseEntity.badRequest().build();
+    }
     
 
 }

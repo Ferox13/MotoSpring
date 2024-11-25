@@ -31,5 +31,11 @@ public class CircuitoServiceImpl implements ICircuitoService {
             return null;
         }
     }
+    @Override
+    public Circuito buscarPorNombre(String nombre) {
+        Optional<Circuito> optCircuito = circuitoRepository.findByNombre(nombre);
+        return optCircuito.isPresent() ? optCircuito.get() : null;
+
+    }
 
 }
