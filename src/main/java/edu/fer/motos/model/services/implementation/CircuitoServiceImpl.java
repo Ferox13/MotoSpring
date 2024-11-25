@@ -25,11 +25,7 @@ public class CircuitoServiceImpl implements ICircuitoService {
     @Override
     public Circuito buscarPorId(Integer id) {
         Optional<Circuito> optCircuito=circuitoRepository.findById(id);
-        if(optCircuito.isPresent()){
-            return optCircuito.get();
-        }else{
-            return null;
-        }
+        return optCircuito.isPresent() ? optCircuito.get() : null;
     }
     @Override
     public Circuito buscarPorNombre(String nombre) {

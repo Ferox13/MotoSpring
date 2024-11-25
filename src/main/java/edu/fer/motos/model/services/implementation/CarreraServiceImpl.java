@@ -24,11 +24,7 @@ public class CarreraServiceImpl implements ICarreraService {
     @Override
     public Carrera buscarPorId(Integer id) {
         Optional<Carrera> optCarrera = carreraRepository.findById(id);
-        if (optCarrera.isPresent()) {
-            return optCarrera.get();
-        } else {
-            return null;
-        }
+        return optCarrera.isPresent() ? optCarrera.get() : null;
     }
 
     @Override
