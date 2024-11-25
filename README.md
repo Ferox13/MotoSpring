@@ -22,8 +22,8 @@ Este sistema gestiona la información de pilotos, circuitos y carreras en un for
 | Campo        | Tipo             | Descripción                                   |
 |--------------|------------------|-----------------------------------------------|
 | id           | Integer          | Identificador único de la carrera.           |
-| id_piloto    | Integer (FK)     | Identificador del piloto participante.       |
-| id_circuito  | Integer (FK)     | Identificador del circuito donde se realizó. |
+| piloto_id    | Integer (FK)     | Identificador del piloto participante.       |
+| circuito_id  | Integer (FK)     | Identificador del circuito donde se realizó. |
 | temporada    | String           | Año de la temporada.                         |
 | posición     | Enumerado        | Posición final (1...23).                     |
 
