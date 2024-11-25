@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.fer.motos.model.dto.CircuitoDTO;
 import edu.fer.motos.model.entities.Circuito;
 import edu.fer.motos.model.services.implementation.CircuitoServiceImpl;
 
@@ -46,6 +47,12 @@ public class CircuitoController {
     @GetMapping("/nombre/{nombre}")
     public ResponseEntity<Circuito> buscarCircuitoPorNombre(@PathVariable("nombre") String nombre) {
         Circuito circuito = circuitoService.buscarPorNombre(nombre);
+        return circuito != null ? ResponseEntity.ok().body(circuito) : ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("/nombre2/{nombre}")
+    public ResponseEntity<CircuitoDTO> buscarCircuitoPorNombre2(@PathVariable("nombre") String nombre) {
+        CircuitoDTO circuito = circuitoService.buscarPorNombre2(nombre);
         return circuito != null ? ResponseEntity.ok().body(circuito) : ResponseEntity.badRequest().build();
     }
     
