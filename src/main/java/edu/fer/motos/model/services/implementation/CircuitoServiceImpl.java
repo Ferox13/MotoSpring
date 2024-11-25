@@ -25,42 +25,14 @@ public class CircuitoServiceImpl implements ICircuitoService {
 
     @Override
     public Circuito buscarPorId(Integer id) {
-        Optional<Circuito> optCircuito = circuitoRepository.findById(id);
-        if (optCircuito.isPresent()) {
-            Circuito circuito = optCircuito.get();
-            // Cargar las carreras asociadas
-            circuito.getCarreras().size(); // Esto fuerza la carga de las carreras
-            return circuito;
-        } else {
-            return null;
-        }
-    }
-
-    @Override
-    public Circuito buscarPorNombre(String nombre) {
-        Optional<Circuito> optCircuito = circuitoRepository.findByNombre(nombre);
-        if (optCircuito.isPresent()) {
-            Circuito circuito = optCircuito.get();
-            // Cargar las carreras asociadas
-            circuito.getCarreras().size(); // Esto fuerza la carga de las carreras
-            return circuito;
-        } else {
-            return null;
-        }
+        Optional<Circuito> optCircuito=circuitoRepository.findById(id);
+        return optCircuito.isPresent() ? optCircuito.get() : null;
     }
 
     @Override
     public CircuitoDTO buscarPorNombre2(String nombre) {
         Optional<Circuito> optCircuito = circuitoRepository.findByNombre(nombre);
-        if (optCircuito.isPresent()) {
-            Circuito circuito = optCircuito.get();
-            // Cargar las carreras asociadas
-            circuito.getCarreras().size(); // Esto fuerza la carga de las carreras
-            CircuitoDTO dto= CircuitoMapper.INSTANCE.toDTO(circuito);
-            return dto;
-        } else {
-            return null;
-        }
+        return optCircuito.isPresent() ? optCircuito.get() : null;
 
     }
 

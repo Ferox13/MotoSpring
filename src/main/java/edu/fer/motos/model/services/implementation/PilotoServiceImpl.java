@@ -34,12 +34,7 @@ public class PilotoServiceImpl implements IPilotoService {
     @Override
     public Piloto buscarPiloto(Integer id) {
         Optional<Piloto> optPiloto = pilotoRepository.findById(id);
-        if (optPiloto.isPresent()) {
-            return optPiloto.get();
-
-        } else {
-            return null;
-        }
+        return optPiloto.isPresent() ? optPiloto.get() : null;
     }
 
     @Override
@@ -69,7 +64,7 @@ public class PilotoServiceImpl implements IPilotoService {
         List<Carrera> carreras = carreraRepository.findByPosicionBetween(posuno, posdos);
         List<Piloto> pilotos = new ArrayList<>();
         for (Carrera carrera : carreras) {
-            Piloto piloto =carrera.getPiloto();
+            Piloto piloto = carrera.getPiloto();
             pilotos.add(piloto);
         }
         return pilotos;
@@ -78,9 +73,9 @@ public class PilotoServiceImpl implements IPilotoService {
 
     @Override
     public Piloto buscarPilotoMaxVictorias() {
-        List<Piloto> pilotos= pilotoRepository.findPilotoConMasPosicion(Posicion.FIRST);
-        Piloto piloto= pilotos.get(0);
-        return piloto!=null ? piloto : null;
+        List<Piloto> pilotos = pilotoRepository.findPilotoConMasPosicion(Posicion.FIRST);
+        Piloto piloto = pilotos.get(0);
+        return piloto != null ? piloto : null;
     }
 
 }
