@@ -28,7 +28,7 @@ public class Piloto {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, columnDefinition = "Enum('PASIVA','AGRESIVA','TEMERARIA')")
     private Conduccion conduccion;
-    @OneToMany(mappedBy = "piloto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "piloto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     List<Carrera> carreras = new ArrayList<>();
 
     public Piloto() {

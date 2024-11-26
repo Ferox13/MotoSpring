@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import edu.fer.motos.model.enums.Posicion;
 import edu.fer.motos.model.repositories.ICarreraRepository;
 import edu.fer.motos.model.repositories.IPilotoRepository;
 import edu.fer.motos.model.services.interfaces.IPilotoService;
+import jakarta.transaction.Transactional;
 
 @Service
 public class PilotoServiceImpl implements IPilotoService {
@@ -31,10 +33,19 @@ public class PilotoServiceImpl implements IPilotoService {
         return pilotos;
     }
 
+    @Transactional
     @Override
     public Piloto buscarPiloto(Integer id) {
-        Optional<Piloto> optPiloto = pilotoRepository.findById(id);
-        return optPiloto.isPresent() ? optPiloto.get() : null;
+        // Optional<Piloto> optPiloto = pilotoRepository.findById(id);
+        // return optPiloto.isPresent() ? optPiloto.get() : null;
+        
+        Piloto piloto = pilotoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Piloto no encontrado"));
+        // Inicializa las relaciones perezosas (carga la lista)
+        piloto.getCarreras().forEach(carrera -> {
+            carrera.getCircuito(); // Inicializa el artefacto
+        });
+        return piloto;
     }
 
     @Override
@@ -80,7 +91,7 @@ public class PilotoServiceImpl implements IPilotoService {
 
     @Override
     public void eliminarPilotoId(Integer id) {
-        Optional<Piloto> optPiloto=pilotoRepository.findById(id);
+        Optional<Piloto> optPiloto = pilotoRepository.findById(id);
         if (optPiloto.isPresent()) {
             pilotoRepository.deleteById(optPiloto.get().getId());
         }
