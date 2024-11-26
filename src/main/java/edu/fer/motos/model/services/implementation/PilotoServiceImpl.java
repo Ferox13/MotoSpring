@@ -78,4 +78,13 @@ public class PilotoServiceImpl implements IPilotoService {
         return piloto != null ? piloto : null;
     }
 
+    @Override
+    public void eliminarPilotoId(Integer id) {
+        Optional<Piloto> optPiloto=pilotoRepository.findById(id);
+        if (optPiloto.isPresent()) {
+            pilotoRepository.deleteById(optPiloto.get().getId());
+        }
+
+    }
+
 }

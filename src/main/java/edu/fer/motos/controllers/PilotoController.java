@@ -3,7 +3,9 @@ package edu.fer.motos.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,6 +77,16 @@ public class PilotoController {
         try {
             Piloto piloto = pilotoService.buscarPilotoMaxVictorias();
             return piloto != null ? ResponseEntity.ok().body(piloto) : ResponseEntity.badRequest().build();
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @DeleteMapping("/piloto/delete/{id}")
+    public ResponseEntity<Void> eliminarPilotoId(@PathVariable("id") Integer id) {
+        try {
+            pilotoService.eliminarPilotoId(id);
+            return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
