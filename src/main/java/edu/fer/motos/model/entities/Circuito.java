@@ -25,7 +25,6 @@ public class Circuito {
     private String nombre;
     @Column(length = 25, nullable = false)
     private String localidad;
-    @JsonIgnore
     @OneToMany(mappedBy = "circuito", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     List<Carrera> carreras = new ArrayList<>();
 
